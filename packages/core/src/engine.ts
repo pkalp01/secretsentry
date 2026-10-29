@@ -20,6 +20,9 @@ export interface Engine {
  * higher confidence, then the longer match.
  */
 export function resolveOverlaps<T extends Finding>(findings: T[], rank: (f: T) => number = () => 0): T[] {
+  // Fast path: most of the time nothing overlaps, so skip the pairwise check.
+  const byStart = [...findings].sort((a, b) => a.start - b.start || a.end - b.end);
+  if (byStart.every((f, i) => i === 0 || f.start >= byStart[i - 1]!.end)) return byStart;
   const ordered = [...findings].sort(
     (a, b) =>
       rank(a) - rank(b) ||

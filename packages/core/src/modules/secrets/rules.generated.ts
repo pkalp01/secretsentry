@@ -336,7 +336,7 @@ export const RULES: SecretRule[] = [
     "keywords": [
       "private key"
     ],
-    "pattern": "(-----BEGIN[ A-Z0-9]{0,40}PRIVATE KEY(?: BLOCK)?-----(?:[\\s\\S]{0,12000}?-----END[ A-Z0-9]{0,40}PRIVATE KEY(?: BLOCK)?-----)?)",
+    "pattern": "(-----BEGIN[ A-Z0-9]{0,40}PRIVATE KEY(?: BLOCK)?-----(?:(?:(?!-----BEGIN)[\\s\\S]){0,12000}?-----END[ A-Z0-9]{0,40}PRIVATE KEY(?: BLOCK)?-----)?)",
     "flags": "",
     "group": 1,
     "placeholder": "PRIVATE_KEY",

@@ -181,6 +181,8 @@
 
   // ../core/src/engine.ts
   function resolveOverlaps(findings, rank = () => 0) {
+    const byStart = [...findings].sort((a, b) => a.start - b.start || a.end - b.end);
+    if (byStart.every((f, i) => i === 0 || f.start >= byStart[i - 1].end)) return byStart;
     const ordered = [...findings].sort(
       (a, b) => rank(a) - rank(b) || CONFIDENCE_RANK[b.confidence] - CONFIDENCE_RANK[a.confidence] || b.end - b.start - (a.end - a.start) || a.start - b.start
     );
@@ -660,7 +662,7 @@
       "keywords": [
         "private key"
       ],
-      "pattern": "(-----BEGIN[ A-Z0-9]{0,40}PRIVATE KEY(?: BLOCK)?-----(?:[\\s\\S]{0,12000}?-----END[ A-Z0-9]{0,40}PRIVATE KEY(?: BLOCK)?-----)?)",
+      "pattern": "(-----BEGIN[ A-Z0-9]{0,40}PRIVATE KEY(?: BLOCK)?-----(?:(?:(?!-----BEGIN)[\\s\\S]){0,12000}?-----END[ A-Z0-9]{0,40}PRIVATE KEY(?: BLOCK)?-----)?)",
       "flags": "",
       "group": 1,
       "placeholder": "PRIVATE_KEY",

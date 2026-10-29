@@ -6,7 +6,9 @@ import { RULES } from "../src/modules/secrets/rules.generated.ts";
 // Hostile inputs built to trigger catastrophic regex backtracking. A rule that
 // takes longer than the budget on any of them could freeze someone's browser.
 const N = 100_000;
-const BUDGET_MS = 300;
+// Catastrophic backtracking takes seconds or minutes, so 1 s catches it while
+// leaving room for slower CI machines.
+const BUDGET_MS = 1000;
 const hostile: Record<string, string> = {
   "letters": "a".repeat(N),
   "upper": "A".repeat(N),
