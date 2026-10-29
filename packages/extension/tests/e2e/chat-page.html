@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Fake AI chat (test page)</title></head>
+<body>
+  <!-- A stand-in for an AI chat site, used only by the end-to-end tests. -->
+  <form id="form" onsubmit="return false">
+    <textarea id="ta" rows="4" cols="60"></textarea>
+    <button id="send" type="button" aria-label="Send message">Send</button>
+  </form>
+  <div id="ce" contenteditable="true" style="border:1px solid #ccc;min-height:40px"></div>
+  <chat-box id="wc"></chat-box>
+  <ul id="sent"></ul>
+  <script>
+    const sent = document.getElementById("sent");
+    const ta = document.getElementById("ta");
+    const ce = document.getElementById("ce");
+    function post(text) { const li = document.createElement("li"); li.textContent = text; sent.append(li); }
+    function sendTa() { if (!ta.value) return; post(ta.value); ta.value = ""; }
+    document.getElementById("send").addEventListener("click", sendTa);
+    ta.addEventListener("keydown", (e) => { if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); sendTa(); } });
+    ce.addEventListener("keydown", (e) => { if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); post(ce.innerText); ce.textContent = ""; } });
+    // A chat box inside a web component's open shadow root.
+    customElements.define("chat-box", class extends HTMLElement {
+      connectedCallback() {
+        const root = this.attachShadow({ mode: "open" });
+        const t = document.createElement("textarea");
+        t.id = "inner";
+        t.addEventListener("keydown", (e) => { if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); post(t.value); t.value = ""; } });
+        root.append(t);
+      }
+    });
+  </script>
+</body>
+</html>

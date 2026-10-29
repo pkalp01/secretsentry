@@ -1,0 +1,35 @@
+name: Release
+# Runs when you publish a release on GitHub (Releases > Draft a new release > Publish).
+# Builds the extension, tests it, and attaches the zip and its SHA-256 to the release.
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: write
+
+jobs:
+  attach-zip:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm test
+      - name: Build and zip the extension
+        env:
+          TAG: ${{ github.event.release.tag_name }}
+        run: |
+          npm run build
+          cd packages/extension/dist
+          zip -r -X "../../../SecretSentry-${TAG}.zip" .
+          cd ../../..
+          sha256sum "SecretSentry-${TAG}.zip" > "SecretSentry-${TAG}.zip.sha256"
+      - name: Attach to the release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ github.event.release.tag_name }}
+        run: gh release upload "$TAG" "SecretSentry-${TAG}.zip" "SecretSentry-${TAG}.zip.sha256" --clobber

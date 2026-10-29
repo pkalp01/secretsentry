@@ -1,0 +1,6 @@
+main { max-width: 680px; margin: 0 auto; padding: 28px 16px 48px; display: grid; gap: 24px; }
+.toggle { gap: 10px; font-weight: 600; }
+.add { margin-top: 10px; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+.card > p.muted:first-child { margin-top: 0; }
+.facts { margin: 0; padding-left: 18px; display: grid; gap: 6px; }

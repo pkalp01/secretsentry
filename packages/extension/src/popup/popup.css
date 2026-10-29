@@ -1,0 +1,7 @@
+body { width: 340px; }
+main { padding: 14px; display: grid; gap: 12px; }
+#host { margin: 4px 0 8px; overflow-wrap: anywhere; }
+#host:empty { display: none; }
+#siteActions { justify-content: flex-start; flex-wrap: wrap; }
+#siteActions:empty { display: none; }
+footer .muted { font-size: 12px; }

@@ -1,0 +1,41 @@
+name: False alarm
+description: SecretSentry warned about something that isn't a secret.
+title: "[False alarm] "
+labels: ["detection", "false alarm"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting. A copy of the text that triggered the warning helps most, **as long as it contains nothing private**. Change any real names, IDs or values if unsure.
+  - type: input
+    id: label
+    attributes:
+      label: What did the warning say it found?
+      placeholder: e.g. "Secret assigned to a variable"
+    validations:
+      required: true
+  - type: textarea
+    id: text
+    attributes:
+      label: Text that triggered it
+      description: Paste the line or a close imitation. Remove anything private.
+      render: text
+    validations:
+      required: true
+  - type: textarea
+    id: why
+    attributes:
+      label: Why isn't it a secret?
+      placeholder: e.g. It's a commit hash / a product code / a variable name.
+  - type: input
+    id: version
+    attributes:
+      label: SecretSentry version
+      placeholder: "0.1.0"
+  - type: checkboxes
+    id: confirm
+    attributes:
+      label: Check before submitting
+      options:
+        - label: This report contains no real secrets or private information.
+          required: true

@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>SecretSentry</title>
+  <link rel="stylesheet" href="../ui.css">
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <main>
+    <header class="row">
+      <div class="brand"><img src="../icons/icon-48.png" alt=""><div><h1>SecretSentry</h1><small id="rules"></small></div></div>
+      <input type="checkbox" class="switch" id="enabled" aria-label="SecretSentry on or off">
+    </header>
+    <section class="card" id="site">
+      <div class="status" id="status"><span class="dot"></span><span id="statusText">Checking this tab…</span></div>
+      <p class="muted mono" id="host"></p>
+      <div class="row" id="siteActions"></div>
+      <p class="error" id="error" role="alert"></p>
+    </section>
+    <footer class="row">
+      <span class="muted">Runs on this device only. Saves no secrets.</span>
+      <button id="manage">Manage sites</button>
+    </footer>
+  </main>
+  <script src="popup.js"></script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>SecretSentry settings</title>
+  <link rel="stylesheet" href="../ui.css">
+  <link rel="stylesheet" href="options.css">
+</head>
+<body>
+  <main>
+    <header class="row">
+      <div class="brand"><img src="../icons/icon-48.png" alt=""><div><h1>SecretSentry</h1><small id="version"></small></div></div>
+      <label class="row toggle"><span>Protection on</span><input type="checkbox" class="switch" id="enabled"></label>
+    </header>
+
+    <section>
+      <h2>Sites</h2>
+      <div class="card">
+        <p class="muted">SecretSentry only reads the chat box on these sites. On any other site it isn't loaded at all.</p>
+        <form id="addForm" class="row add">
+          <label for="newSite" class="sr">Add a site</label>
+          <input type="text" id="newSite" placeholder="chat.example.com" autocomplete="off" spellcheck="false">
+          <button type="submit" class="primary">Add site</button>
+        </form>
+        <p class="error" id="error" role="alert"></p>
+        <ul class="list" id="sites"></ul>
+      </div>
+    </section>
+
+    <section>
+      <h2>What SecretSentry keeps</h2>
+      <div class="card">
+        <ul class="facts">
+          <li>Saved on this device: the on/off switch and this site list. Nothing else.</li>
+          <li>Never saved: your messages, your keys, or anything it found. It checks text in memory and forgets it right away.</li>
+          <li>Never sent: it makes no network requests, has no analytics and loads no remote code.</li>
+          <li>Changes to sites apply after you reload those pages.</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+  <script src="options.js"></script>
+</body>
+</html>

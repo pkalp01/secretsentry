@@ -1,0 +1,21 @@
+{
+  "name": "secretsentry",
+  "private": true,
+  "description": "SecretSentry: warns you before secrets leave your browser for an AI chat.",
+  "author": "Kalpesh",
+  "license": "MIT",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "npm run build -w @infodetector/extension",
+    "test": "npm test -w @infodetector/core && npm test -w @infodetector/extension",
+    "test:e2e": "npm run test:e2e -w @infodetector/extension",
+    "typecheck": "npm run typecheck -w @infodetector/core && npm run typecheck -w @infodetector/extension",
+    "build:rules": "npm run build:rules -w @infodetector/core",
+    "bench": "npm run bench -w @infodetector/core"
+  },
+  "engines": {
+    "node": ">=22.18"
+  }
+}

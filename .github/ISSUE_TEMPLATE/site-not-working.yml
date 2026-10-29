@@ -1,0 +1,54 @@
+name: Site not working
+description: No warning appears on a site that's in your list, or the warning looks wrong there.
+title: "[Site] "
+labels: ["site support"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Before reporting: check the site is switched on in the SecretSentry popup, and reload the tab. **Don't include real secrets** in screenshots or text.
+  - type: input
+    id: site
+    attributes:
+      label: Website address
+      placeholder: e.g. chat.example.com
+    validations:
+      required: true
+  - type: dropdown
+    id: what
+    attributes:
+      label: What happens?
+      options:
+        - No warning when I paste
+        - No warning when I press Enter
+        - No warning when I click the Send button
+        - The warning covers something or looks broken
+        - Replace or Remove doesn't change the text
+        - Something else
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Open ...
+        2. Paste a fake key like sk_live_ followed by 24 letters
+        3. ...
+    validations:
+      required: true
+  - type: input
+    id: browser
+    attributes:
+      label: Browser and version
+      placeholder: e.g. Chrome 131 on Windows 11
+  - type: input
+    id: version
+    attributes:
+      label: SecretSentry version
+      placeholder: "0.1.0"
+  - type: textarea
+    id: screenshot
+    attributes:
+      label: Screenshot (optional)
+      description: Make sure no real secrets are visible.

@@ -1,0 +1,28 @@
+{
+  "name": "@infodetector/core",
+  "version": "0.1.0",
+  "description": "Local, dependency-free detection engine for secrets and sensitive data.",
+  "author": "Kalpesh",
+  "license": "MIT",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "files": [
+    "src"
+  ],
+  "scripts": {
+    "build:rules": "node scripts/build-rules.ts",
+    "test": "node --test \"tests/*.test.ts\"",
+    "typecheck": "tsc -p tsconfig.json",
+    "bench": "node bench/bench.ts"
+  },
+  "devDependencies": {
+    "@types/node": "^22.15.0",
+    "typescript": "~5.9.2",
+    "yaml": "^2.8.0"
+  },
+  "engines": {
+    "node": ">=22.18"
+  }
+}

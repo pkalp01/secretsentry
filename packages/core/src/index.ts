@@ -1,0 +1,10 @@
+export { createEngine, resolveOverlaps } from "./engine.ts";
+export type { Engine, EngineOptions } from "./engine.ts";
+export { createSecretsModule, secretsModule, maskValue } from "./modules/secrets/index.ts";
+export { redact } from "./modules/secrets/redact.ts";
+export type { RedactMode, RedactResult } from "./modules/secrets/redact.ts";
+export { shannonEntropy } from "./modules/secrets/entropy.ts";
+export { CATEGORIES } from "./modules/secrets/rule.ts";
+export type { SecretRule } from "./modules/secrets/rule.ts";
+export type { Confidence, DetectorModule, Finding, ScanOptions, ScanResult } from "./types.ts";
+export { CONFIDENCE_RANK } from "./types.ts";
